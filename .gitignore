@@ -1,0 +1,10 @@
+@"
+.venv/
+venv/
+.vs/
+.idea/
+__pycache__/
+*.pyc
+.pytest_cache/
+.pylint.d/
+"@ | Set-Content -Encoding UTF8 .gitignore
