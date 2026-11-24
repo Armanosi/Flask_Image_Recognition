@@ -1,10 +1,24 @@
 
-"""Flask application for hand-sign image recognition."""
+import os
 
 from flask import Flask, render_template, request
+from flask_wtf.csrf import CSRFProtect
 from model import preprocess_img, predict_result
 
 app = Flask(__name__)
+
+app.config["SECRET_KEY"] = os.environ.get(
+    "FLASK_SECRET_KEY"
+)
+
+if not app.config["SECRET_KEY"]:
+    if os.environ.get("FLASK_ENV") == "development":
+        app.config["SECRET_KEY"] = "development-only-change-me"
+    else:
+        raise RuntimeError("FLASK_SECRET_KEY must be configured")
+
+csrf = CSRFProtect(app)
+
 
 
 @app.route("/")
