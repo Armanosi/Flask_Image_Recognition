@@ -1,3 +1,4 @@
+"""Flask application for hand-sign digit recognition."""
 
 import os
 
